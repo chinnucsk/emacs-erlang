@@ -38,6 +38,7 @@
 (add-to-list 'load-path "<PATH_TO_WRANGLER>/elisp")
 (add-to-list 'load-path "<PATH_TO_DISTEL>/elisp")
 (require 'wrangler)
+(erlang-wrangler-on)
 
 ;; setup extra keybindings
 (defun load-extra-erlang-mode-bindings ()
