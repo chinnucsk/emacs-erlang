@@ -14,7 +14,7 @@
 (setq erlang-compile-use-outdir nil)
 
 ;; awesome remote shell function
-(defun remote-erlang-shell ()
+(defun erlang-shell-remote ()
   (interactive)
   (let* ((inferior-erlang-machine-options
           (list "-sname" "emacs"
