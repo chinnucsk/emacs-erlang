@@ -1,6 +1,19 @@
-;; baseline config file for erlang development in emacs ------------------------
-;; the contents of this file meant to be included or referenced from your
-;; regular emacs configuration.
+;; config file for erlang development in emacs ------------------------
+;; * erlang-mode with remote shell support
+;; * flymake
+;; * distel
+;; * wrangler
+;; should not need editing
+
+(setq erlang-root-dir init-erlang-root)
+(setq exec-path (cons (concat erlang-root-dir "/lib/bin") exec-path))
+
+;; add erlang mode, wrangler and distel paths to load path
+(add-to-list 'load-path init-erlang-mode-path)
+(add-to-list 'load-path init-erlang-wrangler-path)
+(add-to-list 'load-path init-erlang-distel-path)
+
+(require 'erlang-start)
 
 ;; short host name, like `hostname -s`, remote shell likes this better
 (defun short-host-name ()
@@ -28,23 +41,11 @@
                        'flymake-create-temp-inplace))
          (local-file (file-relative-name temp-file
                        (file-name-directory buffer-file-name))))
-   (list "~/.emacs.d/fly-compile-erlang"
-     (list local-file))))
+   (list init-erlang-flymake-compile-script (list local-file))))
 (add-to-list 'flymake-allowed-file-name-masks
              '("\\.erl\\'" flymake-erlang-init))
 (add-hook 'erlang-mode-hook 'flymake-mode)
 
-;; add paths to wrangler and distel, require wrangler which also requires distel
-(add-to-list 'load-path "<PATH_TO_WRANGLER>/elisp")
-(add-to-list 'load-path "<PATH_TO_DISTEL>/elisp")
+;; require wrangler which also requires distel, and start wrangler
 (require 'wrangler)
 (erlang-wrangler-on)
-
-;; setup extra keybindings
-(defun load-extra-erlang-mode-bindings ()
-  (define-key erlang-mode-map (kbd "C-c C-d M") 'erlang-man-function)
-  (define-prefix-command 'ctrl-c-ctrl-z-keymap)
-  (define-key erlang-mode-map (kbd "C-c C-z") 'ctrl-c-ctrl-z-keymap)
-  (define-key ctrl-c-ctrl-z-keymap (kbd "z") 'erlang-shell-display)
-  (define-key ctrl-c-ctrl-z-keymap (kbd "r") 'erlang-shell-remote))
-(add-hook 'erlang-mode-hook 'load-extra-erlang-mode-bindings)
