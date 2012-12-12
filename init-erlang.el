@@ -49,3 +49,6 @@
 ;; require wrangler which also requires distel, and start wrangler
 (require 'wrangler)
 (erlang-wrangler-on)
+
+(provide 'init-erlang)
+

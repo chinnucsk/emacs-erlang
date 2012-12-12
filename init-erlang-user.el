@@ -1,15 +1,15 @@
 ;; user configuration examples for erlang development in emacs -----------------
 
 ;; setup paths as needed (required by init-erlang.el)
-(setq init-erlang-root "/usr/lib/erlang")
+(setq init-erlang-root "/opt/local/lib/erlang")
 (setq init-erlang-mode-path
-  (car (file-expand-wildcards "/usr/lib/erlang/lib/tools-*/emacs")))
+  (car (file-expand-wildcards "/opt/local/lib/erlang/lib/tools-*/emacs")))
 (setq init-erlang-wrangler-path
-  (expand-file-name "~/.emacs.d/erlang/wrangler"))
+  (expand-file-name "~/working/wrangler/elisp"))
 (setq init-erlang-distel-path
-  (expand-file-name "~/.emacs.d/erlang/distel"))
+  (expand-file-name "~/add-ons/distel/elisp"))
 (setq init-erlang-flymake-compile-script
-  (expand-file-name "~/.emacs.d/erlang/flymake-compile-erlang"))
+  (expand-file-name "~/emacs-erlang/flymake-compile-erlang"))
 
 (setq erlang-indent-level 4)
 

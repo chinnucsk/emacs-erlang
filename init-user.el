@@ -11,4 +11,4 @@
 ;; default fill-column is 80
 (setq-default fill-column 80)
 
-(provides 'init-user)
+(provide 'init-user)
